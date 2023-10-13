@@ -19,6 +19,7 @@ import retrofit2.Callback
 import retrofit2.Response
 
 class MovieViewModel : ViewModel() {
+
     private val _movieDetails = MutableLiveData<List<Search>>()
     val movieDetails: LiveData<List<Search>>
         get() = _movieDetails
@@ -42,7 +43,6 @@ class MovieViewModel : ViewModel() {
             movieSearchNameError = ""
             isMovieSearchNameError = false
         }
-
         return true
     }
 
@@ -56,15 +56,12 @@ class MovieViewModel : ViewModel() {
                     isLoading = false
                     if (response.isSuccessful) {
                         val moviesData: MoviesData? = response.body()
-
                         _movieDetails.value = moviesData?.Search
-
-                    //Log.d("onResponse", Gson().toJson(response.body()))
+                        //Log.d("onResponse", Gson().toJson(response.body()))
                     } else {
                         _movieDetailsError.value = response.errorBody().toString()
                     }
                 }
-
                 override fun onFailure(call: Call<MoviesData>, t: Throwable) {
                     _movieDetailsError.value = t.localizedMessage
                     isLoading = false

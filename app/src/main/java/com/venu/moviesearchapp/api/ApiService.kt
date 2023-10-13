@@ -4,6 +4,8 @@ import com.google.gson.GsonBuilder
 import com.venu.moviesearchapp.model.moviesData.MoviesData
 import com.venu.moviesearchapp.utils.Constants
 import com.venu.moviesearchapp.utils.Constants.BASE_URL
+import okhttp3.OkHttpClient
+import okhttp3.logging.HttpLoggingInterceptor
 import retrofit2.Call
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
@@ -23,9 +25,15 @@ interface ApiService {
 
         fun getInstance(): ApiService {
             if (apiService == null) {
+                val loggingInterceptor = HttpLoggingInterceptor()
+                loggingInterceptor.setLevel(HttpLoggingInterceptor.Level.BODY)
                 apiService = Retrofit.Builder()
                     .baseUrl(BASE_URL)
-                    .addConverterFactory(GsonConverterFactory.create())
+                    .addConverterFactory(GsonConverterFactory.create()).client(
+                        OkHttpClient
+                            .Builder().addInterceptor(loggingInterceptor)
+                            .build()
+                    )
                     .build().create(ApiService::class.java)
             }
             return apiService!!
