@@ -59,12 +59,12 @@ fun Greeting() {
 
     Surface {
 
-
         Column(
             modifier = Modifier
                 .fillMaxSize()
                 .padding(16.dp)
         ) {
+
             SearchBar(
                 text = mainViewModel.movieSearchName,
                 onTextChange = { mainViewModel.movieSearchName = it },
@@ -78,6 +78,7 @@ fun Greeting() {
                 mainViewModel.movieSearchNameError,
                 mainViewModel.isMovieSearchNameError
             )
+
             Spacer(modifier = Modifier.height(10.dp))
 
             if (mainViewModel.isLoading) {
@@ -104,10 +105,8 @@ fun Greeting() {
                 )
             }
 
-
-
-
             Spacer(modifier = Modifier.height(16.dp))
+
             movieDetailsError?.let {
                 Text(
                     text = it,
@@ -118,7 +117,6 @@ fun Greeting() {
 
         }
     }
-
 }
 
 @Preview(showBackground = true)

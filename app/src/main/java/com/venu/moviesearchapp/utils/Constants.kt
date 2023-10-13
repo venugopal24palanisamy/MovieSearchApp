@@ -6,5 +6,4 @@ object Constants {
     const val TYPE = "movie"
 
     //API End Points
-
 }

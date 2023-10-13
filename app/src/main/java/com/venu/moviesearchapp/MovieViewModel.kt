@@ -1,6 +1,6 @@
 package com.venu.moviesearchapp
 
-import android.util.Log
+
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.setValue
@@ -8,7 +8,6 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.google.gson.Gson
 import com.venu.moviesearchapp.api.ApiService
 import com.venu.moviesearchapp.model.moviesData.MoviesData
 import com.venu.moviesearchapp.model.moviesData.Search
@@ -57,9 +56,10 @@ class MovieViewModel : ViewModel() {
                     isLoading = false
                     if (response.isSuccessful) {
                         val moviesData: MoviesData? = response.body()
+
                         _movieDetails.value = moviesData?.Search
 
-                        //Log.d("onResponse", Gson().toJson(response.body()))
+                    //Log.d("onResponse", Gson().toJson(response.body()))
                     } else {
                         _movieDetailsError.value = response.errorBody().toString()
                     }
