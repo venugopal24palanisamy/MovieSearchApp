@@ -91,8 +91,8 @@ fun Greeting() {
             } else {
                 movieDetails?.let {
                     LazyVerticalGrid(
-                        columns = GridCells.Fixed(2), // Specify the number of columns
-                        modifier = Modifier.padding(6.dp) // Add any desired padding or modifiers
+                        columns = GridCells.Fixed(2),
+                        modifier = Modifier.padding(6.dp)
                     ) {
                         items(movieDetails!!.size) {
                             MovieTile(movieDetails!![it])
